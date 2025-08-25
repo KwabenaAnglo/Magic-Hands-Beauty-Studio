@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, viewport-fit=cover, user-scalable=yes">
+    <title>Our Services - Magic Hands</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Ensure service cards are visible by default */
+        .service-card {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+            display: block !important;
+        }
+        
+        /* Ensure service grid is properly displayed */
+        .services-grid {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+            gap: 30px !important;
+        }
+        
+        :root {
+            --primary: #ff69b4;
+            --secondary: #ff1493;
+            --light: #fff5f9;
+            --dark: #4a1a2c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('Magic.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            transition: right 0.3s ease;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 40px;
+            height: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+            background: transparent;
+            border: none;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn:hover .bar {
+            background: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+                position: relative;
+                z-index: 1002;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 85%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding: 100px 30px 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                gap: 15px;
+                box-shadow: -5px 0 30px rgba(0,0,0,0.15);
+                z-index: 1000;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                transform: translateX(0);
+                opacity: 0;
+                visibility: hidden;
+            }
+            
+            .nav-links.active {
+                right: 0;
+                opacity: 1;
+                visibility: visible;
+                transform: translateX(0);
+            }
+            
+            .nav-links::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 70px;
+                background: linear-gradient(to bottom, rgba(255,255,255,0.98), rgba(255,255,255,0.8));
+                z-index: -1;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                opacity: 0;
+                transform: translateX(20px);
+                transition: all 0.4s ease;
+            }
+            
+            .nav-links.active li {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            
+            .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+            .nav-links li:nth-child(2) { transition-delay: 0.15s; }
+            .nav-links li:nth-child(3) { transition-delay: 0.2s; }
+            .nav-links li:nth-child(4) { transition-delay: 0.25s; }
+            
+            .nav-links a {
+                display: flex;
+                align-items: center;
+                padding: 15px 20px;
+                font-size: 1.2rem;
+                font-weight: 500;
+                color: var(--dark);
+                border-radius: 8px;
+                transition: all 0.3s ease;
+                width: 100%;
+            }
+            
+            .nav-links a i {
+                margin-right: 15px;
+                font-size: 1.3rem;
+                width: 24px;
+                text-align: center;
+                color: var(--primary);
+                transition: all 0.3s ease;
+            }
+            
+            .nav-links a:hover {
+                background: rgba(255, 105, 180, 0.1);
+                transform: translateX(5px);
+            }
+            
+            .nav-links a:hover i {
+                color: var(--secondary);
+                transform: scale(1.2);
+            }
+            
+            .nav-links a.active {
+                background: linear-gradient(45deg, var(--primary), var(--secondary));
+                color: white;
+                box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            }
+            
+            .nav-links a.active i {
+                color: white;
+            }
+        }
+        
+        .mobile-menu-btn .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: center;
+            pointer-events: none;
+        }
+        
+        .mobile-menu-btn .bar:nth-child(1) {
+            transform: translateY(0) rotate(0);
+        }
+        
+        .mobile-menu-btn .bar:nth-child(2) {
+            transition: opacity 0.2s ease;
+        }
+        
+        .mobile-menu-btn .bar:nth-child(3) {
+            transform: translateY(0) rotate(0);
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(1) {
+            transform: translateY(10.5px) rotate(45deg);
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(2) {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(3) {
+            transform: translateY(-10.5px) rotate(-45deg);
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                padding: 80px 20px 40px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-start;
+                gap: 20px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                display: block;
+                padding: 12px 0;
+                font-size: 1.1rem;
+                transition: color 0.3s ease;
+            }
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(135deg, rgba(255,105,180,0.9), rgba(255,20,147,0.9)), 
+                        url('https://images.unsplash.com/photo-1590544536783-0aabedf040fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+            height: 50vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+            margin-bottom: 60px;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        /* Services Section */
+        .services-section {
+            padding: 80px 0;
+            background-color: #fff9fb;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background: var(--primary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        .service-card.animate {
+            animation: fadeInUp 0.8s ease forwards;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .service-icon {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: -60px auto 25px;
+            color: white;
+            font-size: 3.5rem;
+            box-shadow: 0 15px 30px rgba(255,105,180,0.3);
+            position: relative;
+            z-index: 1;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            overflow: visible;
+            border: 3px solid white;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+
+        .service-icon i {
+            transition: all 0.5s ease;
+            transform: translateZ(20px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            font-size: 3.2rem !important; /* Override inline styles */
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotateY(0deg); }
+            50% { transform: translateY(-10px) rotateY(10deg); }
+            100% { transform: translateY(0) rotateY(0deg); }
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(180deg) scale(1.1);
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+        }
+
+        .service-card:hover .service-icon i {
+            transform: rotateY(-180deg) translateZ(20px);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.05) rotateY(180deg);
+            box-shadow: 0 20px 40px rgba(255,105,180,0.5);
+            background: linear-gradient(45deg, var(--secondary), #ff69b4);
+            border-color: rgba(255,255,255,0.8);
+        }
+        
+        .service-content {
+            padding: 20px 30px 35px;
+            text-align: center;
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .service-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .service-content h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .price {
+            color: var(--primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 20px 0;
+            display: block;
+        }
+        
+        .service-content p {
+            color: #666;
+            margin-bottom: 25px;
+        }
+        
+        .service-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .service-features li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            margin-top: auto;
+            transition: all 0.3s;
+            border: 2px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            align-self: center;
+            min-width: 150px;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: white;
+            transition: all 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            left: 0;
+        }
+        
+        .btn:hover {
+            color: var(--primary);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .service-card {
+                margin: 0 auto;
+                max-width: 350px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+                padding: 0 10px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .service-content {
+                padding: 0 20px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+            <a href="index.html" class="logo">Magic Hands<span>Beauty</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="services.html" class="active"><i class="fas fa-spa"></i> Services</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate__animated animate__fadeInDown">Our Premium Services</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">Experience the magic of professional beauty treatments</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section">
+        <div class="container">
+            <div class="section-title animate__animated animate__fadeIn">
+                <h2>Beauty Services</h2>
+                <p>We offer a wide range of professional beauty services</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Wig Services -->
+                <div class="service-card">
+                    <div class="service-icon floating" data-aos="zoom-in">
+                        <i class="fas fa-user-tie" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Wig Services</h3>
+                        <span class="price">From ₵100</span>
+                        <p>Professional wig services for a flawless look.</p>
+                        <ul class="service-features">
+                            <li>Closure Wigs</li>
+                            <li>Frontal Wigs</li>
+                            <li>Wig Installation</li>
+                            <li>Wig Styling</li>
+                        </ul>
+                        <a href="tel:+233551703152" class="btn">Call to Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Hair Coloring -->
+                <div class="service-card">
+                    <div class="service-icon floating" data-aos="zoom-in" data-aos-delay="100" style="background: linear-gradient(45deg, #8e44ad, #9b59b6);">
+                        <i class="fas fa-palette" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Hair Coloring</h3>
+                        <span class="price">From ₵120</span>
+                        <p>Transform your look with our professional coloring services.</p>
+                        <ul class="service-features">
+                            <li>Wig Coloring</li>
+                            <li>Highlighting</li>
+                            <li>Balayage</li>
+                            <li>Ombre</li>
+                        </ul>
+                        <a href="tel:+233551703152" class="btn">Call to Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Makeup Services -->
+                <div class="service-card">
+                    <div class="service-icon floating" data-aos="zoom-in" data-aos-delay="200" style="background: linear-gradient(45deg, #e74c3c, #e67e22);">
+                        <i class="fas fa-paint-brush" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Makeup Artistry</h3>
+                        <span class="price">From ₵150</span>
+                        <p>Professional makeup for any special occasion.</p>
+                        <ul class="service-features">
+                            <li>Bridal Make-Up</li>
+                            <li>Engagement Make-Up</li>
+                            <li>Graduations</li>
+                            <li>Photoshoots</li>
+                        </ul>
+                        <a href="tel:+233551703152" class="btn">Call to Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Hair Care -->
+                <div class="service-card">
+                    <div class="service-icon floating" data-aos="zoom-in" data-aos-delay="300" style="background: linear-gradient(45deg, #2ecc71, #1abc9c);">
+                        <i class="fas fa-spa" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Hair Care</h3>
+                        <span class="price">From ₵80</span>
+                        <p>Essential treatments for healthy, beautiful hair.</p>
+                        <ul class="service-features">
+                            <li>Reconstruction</li>
+                            <li>Revamping</li>
+                            <li>Restyling</li>
+                            <li>Hair Installations</li>
+                        </ul>
+                        <a href="tel:+233551703152" class="btn">Call to Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Brow Services -->
+                <div class="service-card">
+                    <div class="service-icon floating" data-aos="zoom-in" data-aos-delay="400" style="background: linear-gradient(45deg, #3498db, #2980b9);">
+                        <i class="fas fa-eye" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Brow Services</h3>
+                        <span class="price">From ₵30</span>
+                        <p>Perfectly shaped brows to frame your face.</p>
+                        <ul class="service-features">
+                            <li>Brow Trimming</li>
+                            <li>Brow Shaping</li>
+                            <li>Brow Tinting</li>
+                            <li>Microblading</li>
+                        </ul>
+                        <a href="tel:+233551703152" class="btn">Call to Book Now</a>
+                    </div>
+                </div>
+                
+                <!-- Special Package -->
+                <div class="service-card">
+                    <div class="service-icon floating" data-aos="zoom-in" data-aos-delay="500" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4);">
+                        <i class="fas fa-star" style="font-size: 2.5rem;"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Complete Beauty Package</h3>
+                        <span class="price" style="color: #ff9a9e;">₵400</span>
+                        <p>The ultimate beauty experience with our complete package.</p>
+                        <ul class="service-features">
+                            <li>Hair Styling</li>
+                            <li>Professional Makeup</li>
+                            <li>Manicure & Pedicure</li>
+                            <li>Relaxing Facial</li>
+                        </ul>
+                        <a href="tel:+233551703152" class="btn" style="background: linear-gradient(45deg, #ff9a9e, #fad0c4); border-color: #ff9a9e;">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Footer -->
+      <footer style="background: var(--dark); color: white; padding: 40px 0 20px; text-align: center;">
+        <div class="container">
+            <div class="footer-content" style="display: flex; flex-wrap: wrap; justify-content: space-between; margin-bottom: 30px; text-align: left;">
+                <div class="footer-column" style="flex: 1; min-width: 250px; margin-bottom: 30px; padding: 0 15px;">
+                    <h3 style="color: white; margin-bottom: 20px; font-size: 1.3rem; position: relative; padding-bottom: 10px;">About Us</h3>
+                    <p style="color: #ddd; margin-bottom: 10px;">Magic Hands is your premier destination for professional beauty services in Akwatia. We're committed to making you look and feel your best.</p>
+                </div>
+                <div class="footer-column" style="flex: 1; min-width: 250px; margin-bottom: 30px; padding: 0 15px;">
+                    <h3 style="color: white; margin-bottom: 20px; font-size: 1.3rem; position: relative; padding-bottom: 10px;">Quick Links</h3>
+                    <a href="index.html" style="color: #ddd; margin-bottom: 10px; display: block; text-decoration: none; transition: color 0.3s;">Home</a>
+                    <a href="about.html" style="color: #ddd; margin-bottom: 10px; display: block; text-decoration: none; transition: color 0.3s;">About</a>
+                    <a href="services.html" style="color: #ddd; margin-bottom: 10px; display: block; text-decoration: none; transition: color 0.3s;">Services</a>
+                    <a href="#" style="color: #ddd; margin-bottom: 10px; display: block; text-decoration: none; transition: color 0.3s;">Contact</a>
+                </div>
+                <div class="footer-column" style="flex: 1; min-width: 250px; margin-bottom: 30px; padding: 0 15px;">
+                    <h3 style="color: white; margin-bottom: 20px; font-size: 1.3rem; position: relative; padding-bottom: 10px;">Contact Info</h3>
+                    <p style="color: #ddd; margin-bottom: 10px;"><i class="fas fa-map-marker-alt"></i> Akwatia, Ghana</p>
+                    <p style="color: #ddd; margin-bottom: 10px;"><i class="fas fa-phone"></i> +233 55 170 3152</p>
+                    <p style="color: #ddd; margin-bottom: 10px;"><i class="fas fa-phone"></i> 053 051 4247</p>
+                    <p style="color: #ddd; margin-bottom: 10px;"><i class="fas fa-envelope"></i> info@magichandsbeauty.com</p>
+                </div>
+                <div class="footer-column" style="flex: 1; min-width: 250px; margin-bottom: 30px; padding: 0 15px;">
+                    <h3 style="color: white; margin-bottom: 20px; font-size: 1.3rem; position: relative; padding-bottom: 10px;">Opening Hours</h3>
+                    <p style="color: #ddd; margin-bottom: 10px;">Monday - Friday: 9:00 AM - 7:00 PM</p>
+                    <p style="color: #ddd; margin-bottom: 10px;">Saturday: 9:00 AM - 5:00 PM</p>
+                    <p style="color: #ddd; margin-bottom: 10px;">Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="footer-bottom" style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px; margin-top: 20px;">
+                <p>&copy; 2025 Magic Hands. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu elements
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-links');
+            const navLinks = document.querySelectorAll('.nav-links a');
+            const body = document.body;
+            
+            // Check if elements exist
+            if (!mobileMenuBtn || !navMenu) return;
+            
+            // Toggle menu function
+            function toggleMenu() {
+                const isOpening = !mobileMenuBtn.classList.contains('active');
+                
+                // Toggle button state
+                mobileMenuBtn.classList.toggle('active');
+                mobileMenuBtn.setAttribute('aria-expanded', isOpening);
+                
+                // Toggle menu visibility
+                navMenu.classList.toggle('active');
+                
+                // Toggle body scroll
+                body.style.overflow = isOpening ? 'hidden' : '';
+                
+                // Add/remove event listeners based on menu state
+                if (isOpening) {
+                    document.addEventListener('keydown', handleEscapeKey);
+                    document.addEventListener('touchmove', preventScroll, { passive: false });
+                } else {
+                    document.removeEventListener('keydown', handleEscapeKey);
+                    document.removeEventListener('touchmove', preventScroll, { passive: false });
+                }
+            }
+            
+            // Close menu when clicking outside
+            function handleClickOutside(e) {
+                if (!e.target.closest('nav') && navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+            
+            // Close menu with Escape key
+            function handleEscapeKey(e) {
+                if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+            
+            // Prevent scroll when menu is open on touch devices
+            function preventScroll(e) {
+                if (navMenu.classList.contains('active')) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return false;
+                }
+            }
+            
+            // Toggle menu on button click
+            mobileMenuBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+            
+            // Close menu when clicking on nav links
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        toggleMenu();
+                    }
+                });
+            });
+            
+            // Handle click outside
+            document.addEventListener('click', handleClickOutside);
+            
+            // Handle window resize
+            function handleResize() {
+                if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+                    toggleMenu();
+                }
+            }
+            
+            // Add resize event listener with debounce
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(handleResize, 100);
+            });
+            
+            // Cleanup event listeners when component unmounts
+            return () => {
+                document.removeEventListener('click', handleClickOutside);
+                document.removeEventListener('keydown', handleEscapeKey);
+                document.removeEventListener('touchmove', preventScroll, { passive: false });
+                window.removeEventListener('resize', handleResize);
+            };
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                easing: 'ease-out'
+            });
+            
+            // Show service cards immediately when page loads
+            const serviceCards = document.querySelectorAll('.service-card');
+            serviceCards.forEach(card => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+                card.style.visibility = 'visible';
+            });
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                once: true,
+                easing: 'ease-out'
+            });
+            
+            // Function to check if element is in viewport
+            const isInViewport = (element) => {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.bottom >= 0
+                );
+            };
+            
+            // Function to handle scroll event
+            const handleScroll = () => {
+                serviceCards.forEach(card => {
+                    if (isInViewport(card)) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                        card.style.visibility = 'visible';
+                    }
+                });
+            };
+            
+            // Initial check
+            handleScroll();
+            
+            // Add scroll event listener
+            window.addEventListener('scroll', handleScroll);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+    }); // End of DOMContentLoaded
+    </script>
+</body>
+</html>

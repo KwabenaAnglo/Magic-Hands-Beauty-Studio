@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="80" viewBox="0 0 200 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .hand { fill: #FF69B4; }
+        .text { fill: #333; font-family: Arial, sans-serif; font-weight: bold; }
+        .magic { font-size: 24px; }
+        .beauty { font-size: 18px; }
+        .hand1 { animation: float 3s ease-in-out infinite; }
+        .hand2 { animation: float 3s ease-in-out 0.5s infinite; }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+    </style>
+    <!-- Left Hand -->
+    <g class="hand hand1">
+        <path d="M30 40C30 40 20 35 25 25C30 15 40 20 40 20" stroke="#FF69B4" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M40 20L50 15L45 25L55 20" stroke="#FF69B4" stroke-width="4" stroke-linecap="round" fill="none"/>
+    </g>
+    <!-- Right Hand -->
+    <g class="hand hand2">
+        <path d="M170 40C170 40 180 35 175 25C170 15 160 20 160 20" stroke="#FF69B4" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <path d="M160 20L150 15L155 25L145 20" stroke="#FF69B4" stroke-width="4" stroke-linecap="round" fill="none"/>
+    </g>
+    <!-- Text -->
+    <text x="60" y="35" class="text magic">Magic Hands</text>
+    <text x="60" y="55" class="text beauty">Beauty Studio</text>
+</svg>

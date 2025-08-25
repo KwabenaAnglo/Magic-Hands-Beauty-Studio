@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Magic Hands</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #ff69b4;
+            --secondary: #ff1493;
+            --light: #fff5f9;
+            --dark: #4a1a2c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                        url('Magic.jpg') no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 24px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 5px;
+            background: transparent;
+            border: none;
+        }
+        
+        .mobile-menu-btn .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(1) {
+            transform: translateY(10px) rotate(45deg);
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active .bar:nth-child(3) {
+            transform: translateY(-10px) rotate(-45deg);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        /* About Section */
+        .about-section {
+            padding: 150px 0 80px;
+            background-color: #fff;
+        }
+        
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.03);
+        }
+        
+        .about-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .section-title {
+            margin-bottom: 30px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            bottom: -10px;
+            left: 0;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: #555;
+            line-height: 1.8;
+        }
+        
+        .ceo-signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .ceo-name {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 5px;
+            display: block;
+        }
+        
+        .ceo-title {
+            color: #777;
+            font-size: 0.9rem;
+        }
+        
+        /* Mission Section */
+        .mission-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .mission-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .mission-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: white;
+            font-size: 2rem;
+        }
+        
+        .mission-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .mission-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+        
+        /* Team Section */
+        .team-section {
+            padding: 80px 0;
+            background: white;
+            text-align: center;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .team-member {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .member-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 30px auto 20px;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .member-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .member-info {
+            padding: 20px;
+        }
+        
+        .member-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            color: var(--dark);
+        }
+        
+        .member-role {
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-media-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px 0;
+        }
+        
+        .social-media-item .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-media-item .social-icon:hover {
+            transform: scale(1.2);
+        }
+        
+        .social-links a {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            transform: scale(1.2);
+            background: transparent;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .footer-column {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+            padding: 0 15px;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column a:hover {
+            color: var(--primary);
+            padding-left: 5px;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background: white;
+                padding: 80px 20px 40px;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 1000;
+                transition: right 0.3s ease;
+            }
+            
+            .nav-links.active {
+                right: 0;
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .about-image, .about-content {
+                width: 100%;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Magic Hands</a>
+                <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="about.html" class="active"><i class="fas fa-user"></i> About</a></li>
+                    <li><a href="services.html"><i class="fas fa-spa"></i> Services</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-image">
+                    <img src="CEO.jpg" alt="Abigail Owusu - CEO">
+                </div>
+                <div class="about-content">
+                    <div class="section-title">
+                        <h2>Our Story</h2>
+                    </div>
+                    <p>Welcome to Magic Hands, where beauty meets excellence. Founded by Abigail Owusu, our studio is dedicated to providing top-notch beauty services in a warm and welcoming environment.</p>
+                    <p>With over 10 years of experience in the beauty industry, Abigail has built a reputation for excellence and attention to detail. Her passion for beauty and commitment to quality has made Magic Hands Beauty Studio a trusted name in Akwatia and beyond.</p>
+                    <p>At Magic Hands, we believe that everyone deserves to feel beautiful and confident. Our team of skilled professionals is dedicated to helping you look and feel your best, whether you're preparing for a special occasion or simply treating yourself to some well-deserved pampering.</p>
+                    <div class="ceo-signature">
+                        <span class="ceo-name">Abigail Owusu</span>
+                        <span class="ceo-title">Founder & CEO, Magic Hands Beauty Studio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+        <div class="container">
+            <div class="section-title" style="text-align: center;">
+                <h2>Our Mission & Values</h2>
+                <p>What drives us to make you look and feel fabulous</p>
+            </div>
+            <div class="mission-grid">
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Passion</h3>
+                    <p>We're passionate about beauty and dedicated to bringing out the best in every client who walks through our doors.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>We strive for excellence in every service we provide, using only the highest quality products and techniques.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="mission-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Care</h3>
+                    <p>Your comfort and satisfaction are our top priorities. We listen to your needs and tailor our services accordingly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>The talented professionals behind Magic Hands Beauty Studio</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="CEO Abigail.jpg" alt="Abigail Owusu">
+                    </div>
+                    <div class="member-info">
+                        <h3>Abigail Owusu</h3>
+                        <span class="member-role">Founder & CEO</span>
+                        <p>With over a decade of experience, Abigail specializes in bridal and special occasion makeup.</p>
+                        <div class="social-links">
+                            <div class="social-media-item">
+                                <a href="https://www.instagram.com/that_cho_co_gal" target="_blank" class="social-icon">
+                                    <i class="fab fa-instagram" style="color: #E1306C; font-size: 1.5em; margin-right: 10px;"></i>
+                                </a>
+                                <span>that_cho_co_gal</span>
+                            </div>
+                            <div class="social-media-item">
+                                <a href="https://www.tiktok.com/@abiwamillz" target="_blank" class="social-icon">
+                                    <i class="fab fa-tiktok" style="color: #000000; font-size: 1.5em; margin-right: 10px;"></i>
+                                </a>
+                                <span>abiwamillz</span>
+                            </div>
+                            <div class="social-media-item">
+                                <a href="https://www.snapchat.com/add/abbymillz19" target="_blank" class="social-icon">
+                                    <i class="fab fa-snapchat-ghost" style="color: #FFFC00; font-size: 1.5em; margin-right: 10px;"></i>
+                                </a>
+                                <span>abbymillz19</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more team members as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Magic Hands Beauty Studio is your premier destination for professional beauty services in Akwatia. We're committed to making you look and feel your best.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="services.html">Services</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Akwatia, Ghana</p>
+                    <p><i class="fas fa-phone"></i> 055 170 3152</p>
+                    <p><i class="fas fa-phone"></i> 053 051 4247</p>
+                    <p><i class="fas fa-envelope"></i> info@magichandsbeauty.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Opening Hours</h3>
+                    <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
+                    <p>Saturday: 9:00 AM - 5:00 PM</p>
+                    <p>Sunday: Closed</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Magic Hands. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for team members
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamMembers = document.querySelectorAll('.team-member');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            teamMembers.forEach(member => {
+                member.style.opacity = '0';
+                member.style.transform = 'translateY(20px)';
+                member.style.transition = 'all 0.6s ease-out';
+                observer.observe(member);
+            });
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navMenu = document.querySelector('.nav-links');
+            
+            if (mobileMenuBtn && navMenu) {
+                mobileMenuBtn.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.classList.toggle('active');
+                    this.setAttribute('aria-expanded', this.classList.contains('active'));
+                    navMenu.classList.toggle('active');
+                    document.body.style.overflow = this.classList.contains('active') ? 'hidden' : '';
+                });
+                
+                // Close menu when clicking on nav links
+                document.querySelectorAll('.nav-links a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenuBtn.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    });
+                });
+                
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!e.target.closest('nav') && navMenu.classList.contains('active')) {
+                        mobileMenuBtn.classList.remove('active');
+                        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                        navMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
